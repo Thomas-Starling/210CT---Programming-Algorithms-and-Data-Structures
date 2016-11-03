@@ -22,11 +22,11 @@ bool binarySearch(int *s, int &l, int &h)
     {
         int mid = (start + end) / 2;
 
-        if(s[mid] == h || s[mid] == l)
+        if(s[mid] > l && s[mid] < h)
         {
             return true;
         }
-        else if(s[mid] > l && s[mid] < h)
+        else if(s[mid] < l)
         {
             end = mid - 1;
         }
@@ -41,8 +41,7 @@ bool binarySearch(int *s, int &l, int &h)
 int main(int argc, const char * argv[])
 {
     int sequence[10];
-    int low, high, i, j, tmp;
-    bool sorted;
+    int low, high, i, j;
 
     srand((unsigned)time(NULL));    //Random each time never the same
 
@@ -62,9 +61,7 @@ int main(int argc, const char * argv[])
         {
             if (sequence[j + 1] > sequence[j])
             {
-                tmp = sequence[j];
-                sequence[j] = sequence[j + 1];
-                sequence[j + 1] = tmp;
+                swap(sequence[j], sequence[j + 1]);
             }
         }
     }
