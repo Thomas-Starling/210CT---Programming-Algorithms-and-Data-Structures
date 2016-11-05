@@ -4,61 +4,64 @@
 using namespace std;
 
 /*
-    Function header
-*/
+ Function header
+ */
 
-void reverseString(char *s)
+void reverseString(char *r, int len)
 {
-    int i, j, len = 0, words = 0, k = 0;
-
-    //Work out length of string
-    for (i = 0; s[i] != '\0'; i++)
-    {
-        len++;
-    }
-
-    char reverse[len];
-
-    //Reverse words
-    for (j = len - 1; j >= 0; j--)
-    {
-        reverse[k] = s[j];
-        k++;
-    }
-
+    int words = 0;
+    
     char str[len];
-
+    
     //Reverse sentence
-    for (int l = 0, last_l = 0;; l++)
+    for (int l = 0, lastl = 0;; l++)   //O(n^2)
     {
-        if (reverse[l] == ' ' || reverse[l] == '\0')
+        if (r[l] == ' ' || r[l] == '\0')
         {
-            for (int m = l - 1; m >= last_l; m--)
+            for (int m = l - 1; m >= lastl; m--)
             {
-                str[words] = reverse[m];
+                str[words] = r[m];
                 words++;
             }
-            last_l = l + 1;
-
-            str[words] = reverse[l];
+            lastl = l + 1;
+            
+            str[words] = r[l];
             words++;
         }
-        if (reverse[l] == '\0')
+        if (r[l] == '\0')
         {
             break;
         }
     }
-    cout << "Reversed Sentance: " << str << endl;
+    cout << "Output: " << str << endl;
     cout << endl;
 }
 
 
 int main(int argc, const char * argv[]) {
-
+    
     char sentence[] = ("This is awesome");
-    cout << "Original Sentence: " << sentence << endl;
-
-    reverseString(sentence);
-
+    int len = 0;
+    
+    cout << "Input: " << sentence << endl;
+    
+    //Work out length of string
+    for (int i = 0; sentence[i] != '\0'; i++)   //O(n)
+    {
+        len++;
+    }
+    
+    char reverse[len];
+    
+    //Reverse words
+    for (int j = len - 1, k = 0; j >= 0; j--)   //O(n)
+    {
+        reverse[k] = sentence[j];
+        k++;
+    }
+    
+    reverseString(reverse, len);
+    
     return 0;
 }
+
