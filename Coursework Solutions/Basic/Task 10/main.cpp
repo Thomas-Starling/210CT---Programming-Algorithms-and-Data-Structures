@@ -1,69 +1,52 @@
 #include <iostream>
 #include <array>
+#include <vector>
 #include <ctime>
 #include <stdlib.h>
 
 using namespace std;
 
-void returnSequence()
-{
-    
-}
+/*
+    Function header
+*/
 
 void checkSequence(int *s, int l)
 {
-    cout << endl;
+    int  count = 0, tmp = 0;
     for(int i = 0; i < l; i++)
     {
-        if(s[i] >= s[i + 1] && s[i] <= s[i + 2])    //Need to finish
+        if(s[i] >= s[i - 1])
         {
-            cout << s[i] << ", ";
+            count++;
+        }
+        else
+        {
+            if(count > tmp)
+            {
+                tmp = count;
+            }
+            count = 0;
         }
     }
+    cout << "Longest Subdequence: " << ((count > tmp) ? count : tmp) << endl;
 }
 
 int main(int argc, const char * argv[])
 {
     int size, i;
-    char choice;
+    
+    cout << "Enter size of sequence: ";
+    cin >> size;
+    
     int sequence[size];
     
-    try
+    for(i = 0; i < size; i++)
     {
-        cout << "Do you want manual or automatic sequence generation? (M or A): " << endl;
-        cin >> choice;
-        if(choice == 'M' || choice == 'm')
-        {
-            cout << "Enter size of sequence: ";
-            cin >> size;
-            
-            for(i = 0; i < size; i++)
-            {
-                cout << "Enter number at index " << i << ": ";
-                cin >> sequence[i];
-            }
-            
-            checkSequence(sequence, size);
-        }
-        else if(choice == 'A' || choice == 'a')
-        {
-            cout << "Enter size of sequence: ";
-            cin >> size;
-            
-            srand((unsigned)time(NULL));
-            
-            //Fill array with random numbers
-            for(i = 1; i < size; i++)   //O(n)
-            {
-                sequence[i] = 1 + rand() % 100;
-                cout << sequence[i] << ", ";
-            }
-            checkSequence(sequence, size);
-        }
+        cout << "Enter number at index " << i << ": ";
+        cin >> sequence[i];
     }
-    catch(exception e)
-    {
-        cout << &e << endl;
-    }
+    
+    checkSequence(sequence, size);
+
     return 0;
 }
