@@ -13,6 +13,10 @@ using namespace std;
     variable count is more than tmp you store count in tmp and count will then be set to 
     zero since the subsequence is no longer valid due to a number not been more than i.
  
+    The expected output is the longest subsequence, a tennery statment is used ot compare to see if the 
+    count or tmp is higher then returns the number it is holding. The parameters are the sequence 
+    called by pointer so the data can be modified and the size of the sequence used for the loops.
+ 
     We are then taking both variables count and tmp and comparing to see which one is 
     holding the longest subsequence count. The algorithm complexity of this is O(n)
     since we are iterating through the sequence.
@@ -39,6 +43,14 @@ void checkSequence(int *s, int l)
     cout << "Longest Subsequence: " << ((count > tmp) ? count : tmp) << endl;   //Which is higher?
 }
 
+/*
+    The main function is where the user can input the size of the sequence and then every number
+    at thier respected indexs, using a for loop to add them iterativly. After the values have been 
+    inputted the function is called where the sequence and the size is passed as a parameter.
+ 
+    It has been enclosed in a try statment since it prevent the user from inputting bad charecters.
+*/
+
 int main(int argc, const char * argv[])
 {
     int size, i;
@@ -48,13 +60,20 @@ int main(int argc, const char * argv[])
     
     int sequence[size];         //Create array and set it with the size of the user input
     
-    for(i = 0; i < size; i++)   //O(n)
+    try
     {
-        cout << "Enter number at index " << i << ": ";  //User can input numbers
-        cin >> sequence[i];
+        for(i = 0; i < size; i++)   //O(n)
+        {
+            cout << "Enter number at index " << i << ": ";  //User can input numbers
+            cin >> sequence[i];
+        }
+        
+        checkSequence(sequence, size);
     }
-    
-    checkSequence(sequence, size);
+    catch()
+    {
+        //Something happened
+    }
 
     return 0;
 }
