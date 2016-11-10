@@ -14,6 +14,11 @@ using namespace std;
     then return true otherwise it will increment or decrement the start or end depeneding on whether the value
     is higher or lower.
  
+    The expected output if there is a value between high and low is true, which is then passed to the main  
+    function then assesed to see if it is true or false, if the value is true then the output is true 
+    otherwise return false. The pre conditions of this program is that the sequence is generated and sorted
+    for the binary search algorithm to search for the range of values.
+ 
     As well as the binary search algorithm I have made this program robust by making automatic generation of a
     sequence then using bubble sort to sort it in descending order making it searchable by the binary search 
     algorithm. The algorithm complexity of binary search is O(log n) this is becuase you are dividing the
@@ -52,6 +57,16 @@ bool binarySearch(int *s, int &l, int &h)
     }
     return false;
 }
+
+/*
+    The main funciton creates all the variables and generates the sequence, the sequence is randomly generated 
+    then sorted using bubblesort becuase binary search only searchs a sorted sequence. The user is presented 
+    with the sorted sequence for them to input numbers high and low, these are the boundires for the algorithm
+    to search between.
+ 
+    The funciton is called within a variable and the result is stored inside it, after the output contains a    
+    tennery statment where it is compared to see if the returned value is true or false.
+*/
 
 int main(int argc, const char * argv[])
 {
