@@ -12,40 +12,57 @@ using namespace std;
     Input: 8
     Output with + 3 = 9 (Closest Perfect Square number)
     Output without + 3 = 4
-
     8 is closer to 9 which is a perfect square but not 4.
+
+    The pre conditions are that the user enters a number under the size of an int since I haven't accounted for large perfect square numbers using the manual
+    method instead of SQRT. The function to work it all out contains two loops, one which checks to see if the user entered a prime number and the other that
+    checks if the number if not a perfect square then check the closest prime to it as described above. The expected output is either going to be a message that the users
+    input is a prime number or the users input isn't a perfect square and the closest one to it 10 = 9, 5 = 4.
 
     Complexity of O(n) because the loops are not nested it can't be n*n so instead it is n+n. The two for loops each represent N since they are loping through a certain amount
     of numbers, the complexity will grow at a linear rate for both loops.
 */
 
-int perfect_square(unsigned &n) //Use unsigned for larger numbers //O(n) complexity
+void perfect_square(int &n) //Use unsigned for larger numbers
 {
+    bool answer = false;    //No prime found?
     //Check for perfect square number
-    for(int i = 0; i <= n; i++)
+    for(int i = 0; i <= n; i++) //O(n)
     {
-        if(round(i * i) == n)       //round i * i for accurate value
+        if(round(i * i) == n)   //round i * i for accurate value
         {
-            return 1;               //return 1 to the main function for comparison
-            break;                  //Answer found break the loop
+            cout << "\nYour number is a perfect square" << endl
+                 << "Number entered: " << n << endl;
+            answer = true;  //The answer has been found
+            break;  //Answer found break the loop
         }
     }
 
-    //Check for nearest perfect square
-    for(int j = n; j > 0; j--)      //O(n) complexity
+    if(answer == false) //Prime not found using the loop above
     {
-        if(round(j * j) < n + 3)    //Use +3 to get better accurate nearest square
+        //Check for nearest perfect square
+        for(int j = n; j > 0; j--)  //O(n)
         {
-            return round(j * j);    //Return value to main for output
+            if(round(j * j) <= n + 3)    //Use +3 to get better accurate nearest square
+            {
+                cout << "\nYour number is NOT a perfect square: " << endl
+                     << "Number entered: " << n << endl
+                     << "Perfect square estimation: " << j * j << endl; //Print the nearest prime to it
+                break;  //Answer found break the loop
+            }
         }
     }
-    return 0;
 }
+
+/*
+    The main function is where the user enters their input number and that checks whether it is positive or negative before it gets passed to the function,
+    if the condition is false then the number is passed to the function for computation.
+*/
 
 int main(int argc, const char * argv[])
 {
     cout << "--------------Task 3--------------" << endl;
-    unsigned num;   //Use unsigned for larger number
+    int num;   //Use unsigned for larger number
 
     cout << "Enter your number: ";
     cin >> num;
@@ -54,20 +71,7 @@ int main(int argc, const char * argv[])
     {
         cout << "Number isn't positive" << endl;
     }
-
-    int result = perfect_square(num);
-
-    if(result == 1) //Compares the value from the functions return
-    {
-        cout << "\nYour number is a perfect square" << endl
-             << "Number entered: " << num << endl;
-    }
-    else
-    {
-        cout << "\nYour number is NOT a perfect square: " << endl
-             << "Number entered: " << num << endl
-             << "Perfect square estimation: " << result << endl;
-    }
+    perfect_square(num);
 
     return 0;
 }
