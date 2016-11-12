@@ -8,7 +8,9 @@ using namespace std;
     This is used as the base case, if n is more than i then it would begin to check whether it is a prime number or not. using modulo to see if n is divisible by i, if the remainder if 1,
     then n is a prime number.
 
-    O(n) complexity since we are using recursion and it's basically a loop.
+    The expected output is that the program will return if the number is prime or not to the user, example: Input: 3 Output: Number is prime.
+
+    O(n) complexity since we are using recursion and it's basically a loop it will grow linearly.
 */
 
 void primeNumberCheck(unsigned n, int i)    //Use unsigned for large numbers
