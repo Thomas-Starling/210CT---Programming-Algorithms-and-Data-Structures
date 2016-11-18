@@ -64,25 +64,34 @@ public:
     }
 
     //Remove element in list
-    void remove(Node *n)
+    void remove(int *v)
     {
-        if(n->prev != NULL)
-        {
-            n->prev->next = n->next;
-        }
+        Node *current = this->head;
 
-        else
+        while(current != NULL)
         {
-            this->head = n->next;
-        }
-
-        if(n->next != NULL)
-        {
-            n->next->prev = n->prev;
-        }
-        else
-        {
-            this->tail = n->prev;
+            if(current == v)
+            {
+                if(current.prev != NULL)
+                {
+                    current.prev.next = current.next;
+                }
+                else
+                {
+                    current = current.next;
+                }
+            }
+            else
+            {
+                if(current.next != NULL)
+                {
+                    current.next.prev = current.prev;
+                }
+                else
+                {
+                    current = current.prev;
+                }
+            }
         }
     }
 };
@@ -96,7 +105,10 @@ int main(int argc, char *argv[])
     l->display();
 
     //Remove element
-    l->remove(l->head->next);
+    int val;
+    std::cout << "Enter a value to remove: ";
+    std::cin >> val;
+    l->remove(*val);
     l->display();
 
     delete l;
