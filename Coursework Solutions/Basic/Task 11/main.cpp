@@ -64,9 +64,9 @@ public:
     }
 
     //Remove element in list
-    void remove(int *v)
+    void remove(Node *h, int *v)
     {
-        Node *current = this->head;
+        Node *current = h;
 
         while(current != NULL)
         {
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
     int val;
     std::cout << "Enter a value to remove: ";
     std::cin >> val;
-    l->remove(*val);
+    l->remove(l->head, &val);
     l->display();
 
     delete l;
