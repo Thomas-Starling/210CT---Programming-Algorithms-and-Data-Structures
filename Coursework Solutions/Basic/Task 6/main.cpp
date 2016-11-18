@@ -37,29 +37,29 @@ using namespace std;
 
 void reverseString(char *s, int len)
 {
-    int words = 0;  //Count of position of new array
-    char str[len];  //New array for answer
+    int words = 0, last = 0;
+    char str[len];
 
     //Reverse sentence
-    for (int i = 0, lastl = 0;; i++)   //O(n^2)
+    for (int i = 0; i <= len; i++)   //O(n^2)
     {
         if (s[i] == ' ' || s[i] == '\0')    //If the index of i is a space, check \0 for the last word
         {
-            for (int j = i - 1; j >= lastl; j--)    //Found space now decrement j until it meets with the last known word
+            for (int j = i - 1; j >= last; j--)    //Found space now decrement j until it meets with the last known word
             {
-                str[words] = s[j];  //Put value of index j into new char array
+                str[words] = s[j];
                 words++;
             }
-            lastl = i + 1;  //Holds the value of the last known word
-            str[words] = s[i];  //Adds spaces into new array
+            last = i + 1;  //Holds the value of the last known word
+            str[words] = s[i];
             words++;
         }
-        if (s[i] == '\0')   //If string termination found
+        if (s[i] == '\0')
         {
-            break;  //Break loop
+            break;
         }
     }
-    cout << "Output: " << str << endl;  //Print answer
+    cout << "Output: " << str << endl;
 }
 
 /*
@@ -72,7 +72,7 @@ void reverseString(char *s, int len)
 
 int main(int argc, const char * argv[]) {
 
-    char sentence[] = ("Hello World");
+    char sentence[] = ("This is awesome");
     int len = 0;
 
     cout << "Input: " << sentence << endl;
@@ -80,7 +80,7 @@ int main(int argc, const char * argv[]) {
     //Work out length of string
     for (int i = 0; sentence[i] != '\0'; i++)   //O(n), find out the length of string until string termination
     {
-        len++;  //Increment len by 1
+        len++;
     }
 
     char reverse[len];  //new array for reversed sentence
@@ -88,11 +88,11 @@ int main(int argc, const char * argv[]) {
     //Reverse words
     for (int j = len - 1, k = 0; j >= 0; j--)   //O(n)
     {
-        reverse[k] = sentence[j];   //Store value at index j in reverse array at index k
+        reverse[k] = sentence[j];
         k++;
     }
 
-    reverseString(reverse, len);    //Call function
+    reverseString(reverse, len);
 
     return 0;
 }
