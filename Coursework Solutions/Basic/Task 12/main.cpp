@@ -48,22 +48,23 @@ void postorder(BinTreeNode* tree){
 void in_order(BinTreeNode* tree)
 {
     std::stack<BinTreeNode*> nodes;
-    nodes.push(tree);
+    BinTreeNode *current = tree;
     
-    while(!nodes.empty() || tree != NULL)
+    while(!nodes.empty() || current != NULL)
     {
-        if(tree != NULL)
+        if(current != NULL)
         {
-            nodes.push(tree);
-            tree = tree->left;
+            nodes.push(current);
+            current = current->left;
         }
         else
         {
             if(!nodes.empty())
             {
+                current = nodes.top();
                 nodes.pop();
-                std::cout << tree->value << std::endl;
-                tree = tree->right;
+                std::cout << current->value << std::endl;
+                current = current->right;
             }
             else
             {
