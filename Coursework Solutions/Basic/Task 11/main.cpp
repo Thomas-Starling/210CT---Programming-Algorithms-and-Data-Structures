@@ -66,28 +66,28 @@ public:
     //Remove element in list
     void remove(Node *n, int v)
     {
-        while(n->value != v)
+        while(n->value != v)    //While the value of the node is not equal to the input value
         {
-            n = n->next;
+            n = n->next;    //Point to the next element
         }
         
-        if(n->prev != NULL)
+        if(n->prev != NULL) //If the previous element of the node is NULL then point to the next
         {
             n->prev->next = n->next;
         }
 
         else
         {
-            this->head = n->next;
+            this->head = n->next;   //Else point the head to the next element
         }
 
-        if(n->next != NULL)
+        if(n->next != NULL) //If the next element if not NULL then point the node to the previous element
         {
             n->next->prev = n->prev;
         }
         else
         {
-            this->tail = n->prev;
+            this->tail = n->prev;   //Else point the head to the prevous element
         }
     }
 };

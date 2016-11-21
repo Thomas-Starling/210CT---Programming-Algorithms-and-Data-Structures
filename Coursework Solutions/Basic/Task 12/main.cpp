@@ -1,10 +1,6 @@
 #include <iostream>
 #include <stack>
 
-/*
-    Function header
-*/
-
 class BinTreeNode{
 public:
     BinTreeNode(int value){
@@ -45,26 +41,26 @@ void postorder(BinTreeNode* tree){
 }
 
 //Iterative Approach
-void in_order(BinTreeNode* tree)
+void in_order(BinTreeNode* tree)    //O(n)
 {
-    std::stack<BinTreeNode*> nodes;
-    BinTreeNode *current = tree;
+    std::stack<BinTreeNode*> nodes; //Create a stack for the tree
+    BinTreeNode *current = tree;    //Keep track of what the current node is
     
-    while(!nodes.empty() || current != NULL)
+    while(!nodes.empty() || current != NULL)    //Loop while the stack is not empty or the current node is not NULL
     {
-        if(current != NULL)
+        if(current != NULL) //If the current node is not NULL
         {
-            nodes.push(current);
-            current = current->left;
+            nodes.push(current);    //Push the current node into the stack
+            current = current->left;    //Put the node to the left of the current into the current
         }
         else
         {
-            if(!nodes.empty())
+            if(!nodes.empty())  //If the stack is not empty
             {
-                current = nodes.top();
-                nodes.pop();
-                std::cout << current->value << std::endl;
-                current = current->right;
+                current = nodes.top();  //Point to the top of the stack
+                nodes.pop();    //Pop the top out of the stack
+                std::cout << current->value << std::endl;   //Print the value of current node
+                current = current->right;   //Point to the right of the tree
             }
             else
             {
