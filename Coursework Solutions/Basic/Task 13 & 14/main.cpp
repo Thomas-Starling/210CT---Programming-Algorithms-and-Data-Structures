@@ -40,7 +40,7 @@ public:
     void addEdge(int i, int j)
     {
         adjacencyMatrix[i - 1][j - 1] = 1;
-        //adjacencyMatrix[j - 1][i - 1] = 1;
+        adjacencyMatrix[j - 1][i - 1] = 1;
         cout << "Edge " << i << " to " << j << " Added!" << endl;
     }
 
@@ -83,7 +83,7 @@ public:
     void Depth(int v)
     {
         ofstream output;
-        output.open ("depth.txt");
+        output.open ("depth.txt", fstream::out);
         
         bool visited[this->numOfVertex];
         for(int i = 0; i < numOfVertex; i++)
@@ -106,7 +106,7 @@ public:
             
             for (int i = 0; i < numOfVertex; ++i)
             {
-                if (!visited[i])
+                if (!visited[i] && adjacencyMatrix[v][i] == 1)
                 {
                     visited[i] = 1;
                     stack.push(i);
@@ -120,7 +120,7 @@ public:
     void Breadth(int v)
     {
         ofstream output;
-        output.open ("depth.txt");
+        output.open ("breadth.txt", fstream::out);
         
         bool visited[this->numOfVertex];
         for(int i = 0; i < numOfVertex; i++)
@@ -143,7 +143,7 @@ public:
 
             for(int i = 0; i < numOfVertex; i++)
             {
-                if(!visited[i])
+                if(!visited[i] && adjacencyMatrix[v][i] == 1)
                 {
                     visited[i] = 1;
                     queue.push(i);
@@ -181,7 +181,7 @@ int main()
 
     g->printConnections();
     
-    g->Depth(1);
+    g->Depth(6);
     g->Breadth(3);
 
     delete g;
