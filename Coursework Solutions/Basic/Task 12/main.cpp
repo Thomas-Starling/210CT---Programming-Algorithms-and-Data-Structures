@@ -45,7 +45,7 @@ void in_order(BinTreeNode* tree)    //O(n)
 {
     std::stack<BinTreeNode*> nodes; //Create a stack for the tree
     BinTreeNode *current = tree;    //Keep track of what the current node is
-    
+
     while(!nodes.empty() || current != NULL)    //Loop while the stack is not empty or the current node is not NULL
     {
         if(current != NULL) //If the current node is not NULL
@@ -61,10 +61,6 @@ void in_order(BinTreeNode* tree)    //O(n)
                 nodes.pop();    //Pop the top out of the stack
                 std::cout << current->value << std::endl;   //Print the value of current node
                 current = current->right;   //Point to the right of the tree
-            }
-            else
-            {
-                break;
             }
         }
     }
