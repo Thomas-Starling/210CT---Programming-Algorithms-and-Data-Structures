@@ -28,6 +28,20 @@ public:
         cout << "Weight " << val << " added to between node " << i << ", " << j << " Added!" << endl;
     }
 
+    void printGraph()
+    {
+        cout << endl << "Printing Graph...." << endl;
+
+        for(int i = 0; i < numOfVertex; i++)
+        {
+            for(int j = 0; j < numOfVertex; j++)
+            {
+                cout << adjacencyMatrix[i][j] << " " ;
+            }
+            cout << endl;
+        }
+    }
+
     void findShortestPath(int s, int f)
     {
         int current = s - 1;
@@ -93,14 +107,15 @@ int main()
     /*             *         *       *         *            */
     /*             ***********       ***********            */
     /*                                                      */
-
+    
     g->addWeight(1, 2, 7);  //Change to 8 for a different and chanage again to 7 for another order
     g->addWeight(1, 3, 5);
     g->addWeight(2, 4, 5);
     g->addWeight(2, 3, 4);
     g->addWeight(3, 4, 2);
 
-    cout << endl;
+    g->printGraph();
+    
     g->findShortestPath(1, 4);
 
     delete g;
