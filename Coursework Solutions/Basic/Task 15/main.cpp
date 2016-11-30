@@ -17,14 +17,14 @@ public:
         {
             for(int j = 0; j < 4; j++)
             {
-                adjacencyMatrix[i][j] = 999;
+                adjacencyMatrix[i][j] = 999;    //Fill the matrix with inf or 999
             }
         }
     }
 
     void addWeight(int i, int j, int val)
     {
-        adjacencyMatrix[i - 1][j - 1] = val;
+        adjacencyMatrix[i - 1][j - 1] = val;    //Add the weight between the edges i and j
         cout << "Weight " << val << " added to between node " << i << ", " << j << " Added!" << endl;
     }
 
@@ -48,35 +48,35 @@ public:
         bool visited[this->numOfVertex];
         int tentativeWeight[this->numOfVertex];
 
-        for(int i = 0; i < numOfVertex; i++)
+        for(int i = 0; i < numOfVertex; i++)    //Fill the weights array with inf
         {
             tentativeWeight[i] = 999;
         }
-        tentativeWeight[current] = 0;
+        tentativeWeight[current] = 0;   //Mark the current index in the weight array with 0
 
-        while(current != f - 1)
+        while(current != f - 1) //While current isn't equal to the param
         {
-            cout << "->" << current + 1;
+            cout << "->" << current + 1;    //Print the connections
             for(int i = 0; i < numOfVertex; i++)
             {
-                if(tentativeWeight[current] + adjacencyMatrix[current][i] < tentativeWeight[i])
+                if(tentativeWeight[current] + adjacencyMatrix[current][i] < tentativeWeight[i]) //If the index in the weight sequence + the adjacencyMatrix row of current with i as column is less than the weight sequence at index i
                 {
-                    tentativeWeight[i] = tentativeWeight[current] + adjacencyMatrix[current][i];
+                    tentativeWeight[i] = tentativeWeight[current] + adjacencyMatrix[current][i];    //Take that addition and place it into the array
                 }
             }
-            visited[current] = true;
+            visited[current] = true;    //Mark as visited
 
-            int min = 999;
+            int min = 999;  //Set min to inf
             for(int i = 0; i < numOfVertex; i++)
             {
-                if(!visited[i] && tentativeWeight[i] < min)
+                if(!visited[i] && tentativeWeight[i] < min) //If not visited and the weight sequence at index i is less than min
                 {
-                    current = i;
-                    min = tentativeWeight[i];
+                    current = i;    //Current now become i
+                    min = tentativeWeight[i];   //Min becomes the index of i in the weight array
                 }
             }
         }
-        cout << "->" << current + 1 << endl;
+        cout << "->" << current + 1 << endl;    //Print the last computed edge
     }
 
     ~Dijkstra()

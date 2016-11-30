@@ -14,33 +14,33 @@ private:
 public:
     Graph(int numOfVertex)
     {
-        this->numOfVertex = numOfVertex;
+        this->numOfVertex = numOfVertex;    //Point to the instance in the class to set the number
         for(int i = 0; i < 10; i++)
         {
             for(int j = 0; j < 10; j++)
             {
-                adjacencyMatrix[i][j] = 0;
+                adjacencyMatrix[i][j] = 0;  //Fill the array with 0's
             }
         }
     }
 
     void addVertex(int i)
     {
-        numOfVertex = i;
+        numOfVertex = i;    //Change the number of vertices to i so now it will only print to that number
         
         for(int k = i; k <= numOfVertex + i; k++)
         {
             for(int j = 0; j < numOfVertex; j++)
             {
-                adjacencyMatrix[k][j] = 0;
+                adjacencyMatrix[k][j] = 0;  //Fill the new line with 0's
             }
         }
     }
 
     void addEdge(int i, int j)
     {
-        adjacencyMatrix[i - 1][j - 1] = 1;
-        adjacencyMatrix[j - 1][i - 1] = 1;
+        adjacencyMatrix[i - 1][j - 1] = 1;  //Add an edge one way
+        adjacencyMatrix[j - 1][i - 1] = 1;  //Add an edge the other way to make it undirected
         cout << "Edge " << i << " to " << j << " Added!" << endl;
     }
 
@@ -83,37 +83,37 @@ public:
     void Depth(int v)
     {
         ofstream output;
-        output.open ("depth.txt", fstream::out);
+        output.open ("depth.txt", fstream::out);    //Create the file
         
-        bool visited[this->numOfVertex];
+        bool visited[this->numOfVertex];    //Create sequence with the length of number of vertices
         for(int i = 0; i < numOfVertex; i++)
         {
-            visited[i] = 0;
+            visited[i] = 0; //Fill viisted with 0's
         }
         
-        v -= 1;
+        v -= 1; //-1 since it's the way I have designed it
         
         stack<int> stack;
-        visited[v] = 1;
-        stack.push(v);
+        visited[v] = 1; //True that the current paramenter is visited
+        stack.push(v);  //Push the param to the stack
 
         while (!stack.empty())
         {
-            v = stack.top();
+            v = stack.top();    //Get the top of the stack's element
             cout << v + 1 << " ";
-            output << v + 1 << " ";
-            stack.pop();
+            output << v + 1 << " "; //Write to the file
+            stack.pop();    //Pop it off the stack
             
             for (int i = 0; i < numOfVertex; ++i)
             {
-                if (!visited[i] && adjacencyMatrix[v][i] == 1)
+                if (!visited[i] && adjacencyMatrix[v][i] == 1)  //If its hasnt been visited and the row of the param and column of i is equal to 1
                 {
-                    visited[i] = 1;
-                    stack.push(i);
+                    visited[i] = 1; //Mark as visited
+                    stack.push(i);  //Push to the stack
                 }
             }
         }
-        output.close();
+        output.close(); //Close the file
         cout << endl;
     }
     
