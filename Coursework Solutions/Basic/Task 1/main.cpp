@@ -28,7 +28,7 @@ using namespace std;
 
 void FisherYatesShuffle(vector <int> &shuffle)  //Returning no value so void
 {
-    int i, j, tmp;
+    int i, j;
     srand((unsigned)time(NULL)); //Seeds the number of rand()
 
     cout << "After: " << endl;
@@ -42,6 +42,7 @@ void FisherYatesShuffle(vector <int> &shuffle)  //Returning no value so void
 
         cout << shuffle[i] << ", ";
     }
+    cout << endl;
 }
 
 /*
